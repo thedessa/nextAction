@@ -34,7 +34,7 @@
       <artifactId>aws-java-sdk-dynamodb</artifactId>
       <version>1.11.157</version>
     </dependency>
-        <dependency>
+    <dependency>
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-amazon-dynamodb</artifactId>
     </dependency>
@@ -53,6 +53,10 @@
     <dependency>
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-mutiny</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-config-yaml</artifactId>
     </dependency>
     <dependency>
       <groupId>io.quarkus</groupId>

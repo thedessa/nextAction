@@ -10,6 +10,11 @@ import software.amazon.awssdk.services.dynamodb.model.AttributeValue;
 
 @RegisterForReflection
 public class NextAction {
+
+    public static final String ATTR_USER_ID = "userId";
+    public static final String ATTR_TYPE = "type";
+    public static final String ATTR_STATES_MAP = "states";
+
     private String userId; // partition key
     private int type; // sort key
     private Map<String, NextActionState> statesMap = new HashMap<>();
