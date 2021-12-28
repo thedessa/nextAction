@@ -1,22 +1,20 @@
 package dev.ifrs.dao;
 
 import java.util.List;
-import java.util.Map;
 
-import dev.ifrs.NextAction;
-import dev.ifrs.NextActionState;
+import dev.ifrs.model.NextAction;
 
 public interface NextActionDAO {
 
-    public List<NextAction> listInboxTasks(final String userId);
+  List<NextAction> listTasks(final String userId);
 
-    public Map<String, NextActionState> listNextActionTasks(final String userId);
+  void addTask(final String userId, final int type, final String title);
 
-    public void addTask(final String userId, final int type, final String title);
+  void completeTask(final String userId, final String taskId);
 
-    public void completeTask(final String userId, final int type, final String taskId);
+  void renameTask(final String userId, final String taskId, final String newTitle);
 
-    public void renameTask(final String userId, final int type, final String newTitle);
+  void updateContext(final String userId, final String taskId, final String newContext);
 
-    public void deleteTask(final String userId, final int type, final String taskId);
+  void deleteTask(final String userId, final String taskId);
 }
