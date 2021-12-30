@@ -53,9 +53,9 @@ public class NextActionResource {
   @Path("rename/{userId}/{taskId}/{newTitle}")
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
-  public Response complete(@PathParam("userId") final String userId,
-                           @PathParam("taskId") final String taskId,
-                           @PathParam("newTitle") final String newTitle) {
+  public Response rename(@PathParam("userId") final String userId,
+                         @PathParam("taskId") final String taskId,
+                         @PathParam("newTitle") final String newTitle) {
     dao.renameTask(userId, taskId, newTitle);
     return Response.ok().build();
   }
