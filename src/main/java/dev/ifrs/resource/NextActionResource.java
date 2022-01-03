@@ -2,6 +2,7 @@ package dev.ifrs.resource;
 
 import java.util.List;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -23,6 +24,7 @@ public class NextActionResource {
 
   @GET
   @Path("list/{userId}")
+  @RolesAllowed({ "User" })
   @Produces(MediaType.APPLICATION_JSON)
   public List<NextAction> list(@PathParam("userId") final String userId) {
     return dao.listTasks(userId);
@@ -30,53 +32,58 @@ public class NextActionResource {
 
   @POST
   @Path("add/{userId}/{type}/{title}")
+  @RolesAllowed({ "User" })
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   public Response add(@PathParam("userId") final String userId,
-                      @PathParam("type") final int type,
-                      @PathParam("title") final String title) {
+      @PathParam("type") final int type,
+      @PathParam("title") final String title) {
     dao.addTask(userId, type, title);
     return Response.ok().build();
   }
 
   @POST
   @Path("complete/{userId}/{taskId}")
+  @RolesAllowed({ "User" })
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   public Response complete(@PathParam("userId") final String userId,
-                           @PathParam("taskId") final String taskId) {
+      @PathParam("taskId") final String taskId) {
     dao.completeTask(userId, taskId);
     return Response.ok().build();
   }
 
   @POST
   @Path("rename/{userId}/{taskId}/{newTitle}")
+  @RolesAllowed({ "User" })
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   public Response rename(@PathParam("userId") final String userId,
-                         @PathParam("taskId") final String taskId,
-                         @PathParam("newTitle") final String newTitle) {
+      @PathParam("taskId") final String taskId,
+      @PathParam("newTitle") final String newTitle) {
     dao.renameTask(userId, taskId, newTitle);
     return Response.ok().build();
   }
 
   @POST
   @Path("context/{userId}/{taskId}/{newContext}")
+  @RolesAllowed({ "User" })
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   public Response delete(@PathParam("userId") final String userId,
-                         @PathParam("taskId") final String taskId,
-                         @PathParam("newContext") final String newContext) {
+      @PathParam("taskId") final String taskId,
+      @PathParam("newContext") final String newContext) {
     dao.updateContext(userId, taskId, newContext);
     return Response.ok().build();
   }
 
   @POST
   @Path("delete/{userId}/{taskId}")
+  @RolesAllowed({ "User" })
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   public Response delete(@PathParam("userId") final String userId,
-                         @PathParam("taskId") final String taskId) {
+      @PathParam("taskId") final String taskId) {
     dao.deleteTask(userId, taskId);
     return Response.ok().build();
   }
