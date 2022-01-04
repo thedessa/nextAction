@@ -61,10 +61,12 @@ public class NextActionDAOImpl extends AbstractModelDao<NextAction> implements N
 
   @Override
   public void completeTask(String userId, String taskId) {
-
     final PrimaryKey primaryKey = new PrimaryKey(NextAction.ATTR_USER_ID, userId, NextAction.ATTR_TASK_ID, taskId);
+    Item item = get(primaryKey);
+    NextAction nextAction = new NextAction(item);
+
     final String expression = "SET completed = :b";
-    final ValueMap valueMap = new ValueMap().withBoolean(":b", Boolean.TRUE);
+    final ValueMap valueMap = new ValueMap().withBoolean(":b", !nextAction.getCompleted());
     final String conditions = String.format("attribute_exists(%s) AND attribute_exists(%s)", NextAction.ATTR_USER_ID, NextAction.ATTR_TASK_ID);
 
     updateItem(primaryKey, expression, valueMap, conditions);

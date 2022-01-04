@@ -114,5 +114,9 @@ public abstract class AbstractModelDao<M extends AbstractDynamoWrapper> {
   protected void deleteItem(final PrimaryKey primaryKey) {
     this.getTable().deleteItem(primaryKey);
   }
+  
+  public Item get(final PrimaryKey primaryKey) {
+    return this.getTable().getItem(primaryKey);
+  }
 
 }
